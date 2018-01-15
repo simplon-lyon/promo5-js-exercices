@@ -16,7 +16,8 @@ Afficher le nombre de caractère maximum dans le paragraphe #chars (en plus du n
 8) Dans le JS faire en sorte que lorsqu'on clique sur le bouton submit, la value de l'input soit ajouter à un tableau puis qu'elle soit remise à zéro
 9) Faire en sorte d'afficher tous les éléments du tableau sous forme de paragraphes successifs via une boucle sur le tableau
 
-
+10) Rajouter dans la fonction display un button suppr dans le paragraphe
+11) Ajouter un event listener sur ce button qui viendra supprimera l'item actuel du tableau et relancera la fonction display (pour supprimer un élément d'un tableau en js, on utilise soit .splice() soit .filter())
 
 
 

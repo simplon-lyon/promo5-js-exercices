@@ -23,4 +23,46 @@ input.addEventListener("input", function (event){
 });
 
 
+//on crée un tableau qui contiendra nos messages
+let tab = [];
+/**
+ * La fonction display prend les données du tableau et les affiche
+ * sous format HTML via une boucle
+ */
+function display(){
+    let section = document.querySelector("#message");
+    //Remise à zéro de la section pour pas que ça se répète
+    section.innerHTML = '';
+    //Pour chaque item du tableau, on crée un paragraphe qu'on ajoute
+    //à la section.
+    for (let item of tab)
+    {
+      let p = document.createElement("p");
+      p.textContent = item;
+      section.appendChild(p);
+    }
+}
 
+let button = document.querySelector('#go');
+//Le button se contente d'ajouter un nouvel élément au tableau
+//et de relancer la fonction display
+button.addEventListener('click', function(){
+    tab.push(input.value);
+    display();
+});
+
+/*
+Méthode non MVC avec les données stockées directement dans le HTML
+Ca fonctionne, mais si on veut exploiter les données, par exemple en
+les exportant sous format textuel, ou en les supprimant ou autre, on
+est obligé·e·s d'aller fouiller dans le HTML et on est très dépendant·e·s
+de la structure du HTML (cad que si on modifie le HTML, il faudra très
+probablement modifiées également les fonctions en question)
+button.addEventListener('click', function(){
+    let section = document.querySelector("#message");
+    let p = document.createElement("p");
+    p.textContent = input.value;
+    section.appendChild(p);
+});
+
+*/
