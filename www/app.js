@@ -39,6 +39,26 @@ function display(){
     {
       let p = document.createElement("p");
       p.textContent = item;
+
+      //On crée un button pour chaque paragraphe
+      let supp = document.createElement('button');
+      supp.textContent = 'x';
+      //On rajoute un event listener sur le button
+      supp.addEventListener('click', function(){
+        //Le tab.filter permet de filtrer les éléments d'un tableau
+        //selon un booléen renvoyé par la function
+        tab = tab.filter(function(el){
+            //Ici, on dit que si l'élément ne correspond pas à l'item
+            //en cours sur la boucle, on le garde, sinon on le dégage
+            //(en gros, si el vaut item, on le filtre)
+            return el !== item;
+            
+        });
+        //On relance la fonction display
+        display();
+      });
+      p.appendChild(supp);
+
       section.appendChild(p);
     }
 }
