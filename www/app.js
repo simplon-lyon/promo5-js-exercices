@@ -3,8 +3,11 @@
 let input = document.querySelector("#input1");
 let p = document.querySelector("p");
 let char = document.querySelector('#char');
+let preview = document.querySelector('#preview');
+let toggle = document.querySelector('#toggle');
 //On déclare une valeur limite pour l'input
 let limit = 100;
+let model = new Model();
 //On ajoute un event à l'événement input, qui se déclenche dès qu'il y a
 //une modification dans la valeur de l'input
 input.addEventListener("input", function (event){
@@ -22,20 +25,37 @@ input.addEventListener("input", function (event){
 
 });
 
+//La variable showPreview est un booléen qui déterminera si la section
+//preview doit être affichée ou non
+let showPreview = true;
+toggle.addEventListener('click', function(){
+    //Au click sur toggle, on change la valeur de showPreview pour lui
+    //assigner l'inverse de sa valeur actuelle
+    showPreview = !showPreview;
+    //on relance le display
+    display();
+});
 
-//on crée un tableau qui contiendra nos messages
-let tab = [];
 /**
  * La fonction display prend les données du tableau et les affiche
- * sous format HTML via une boucle
+ * sous format HTML via une boucle et affichera ce qui
+ * doit l'être
  */
 function display(){
+    //si showPreview est true, on affiche le section preview,
+    //sinon, on le cache
+    if(showPreview){
+        preview.style.display = 'block';
+    } else{
+        preview.style.display = 'none';
+
+    }
     let section = document.querySelector("#message");
     //Remise à zéro de la section pour pas que ça se répète
     section.innerHTML = '';
-    //Pour chaque item du tableau, on crée un paragraphe qu'on ajoute
+    //Pour chaque item du tableau du modèle, on crée un paragraphe qu'on ajoute
     //à la section.
-    for (let item of tab)
+    for (let item of model.myTable)
     {
       let p = document.createElement("p");
       p.textContent = item;
@@ -45,15 +65,9 @@ function display(){
       supp.textContent = 'x';
       //On rajoute un event listener sur le button
       supp.addEventListener('click', function(){
-        //Le tab.filter permet de filtrer les éléments d'un tableau
-        //selon un booléen renvoyé par la function
-        tab = tab.filter(function(el){
-            //Ici, on dit que si l'élément ne correspond pas à l'item
-            //en cours sur la boucle, on le garde, sinon on le dégage
-            //(en gros, si el vaut item, on le filtre)
-            return el !== item;
-            
-        });
+        //On fait appel directement à la méthode
+        //du model
+        model.delete(item);
         //On relance la fonction display
         display();
       });
@@ -67,7 +81,7 @@ let button = document.querySelector('#go');
 //Le button se contente d'ajouter un nouvel élément au tableau
 //et de relancer la fonction display
 button.addEventListener('click', function(){
-    tab.push(input.value);
+    model.add(input.value);
     display();
 });
 
