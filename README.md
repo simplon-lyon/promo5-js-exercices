@@ -20,4 +20,9 @@ Afficher le nombre de caractère maximum dans le paragraphe #chars (en plus du n
 11) Ajouter un event listener sur ce button qui viendra supprimera l'item actuel du tableau et relancera la fonction display (pour supprimer un élément d'un tableau en js, on utilise soit .splice() soit .filter())
 
 
+12) Rajouter dans le js une variable booléenne showPreview que vous initialiserez à true ou false
+13) Dans la fonction display, rajouter au début ou à la fin un petit if-else qui, si la variable showPreview vaut true, affichera le paragraphe sous l'input et le nombre de caractères, et si showPreview vaut false, cachera le paragraphe sous l'input et le nombre de caractères
+14) Rajouter dans le HTML un button ou une coche ou ce que vous voulez, puis rajouter dans le js un event listener sur cet élément qui fera qu'au click, la valeur de showPreview passe de true à false ou de false à true, puis relancer la fonction display
 
+15) Créer un nouveau fichier avec dedans une classe Model qui contiendra toutes les informations liées au modèle de données pour notre exercice. Dans le cas présent : une propriété tableau, une méthode add(item) et une méthode delete(item)
+16) Dans app.js, utiliser une instance de cette classe à tous les endroits où on faisait appel au tableau ou à l'ajout ou suppression dans le tableau (genre au lieu de faire un tab.push, on fera un model.add)
